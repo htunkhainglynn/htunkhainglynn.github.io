@@ -1,0 +1,20 @@
+---
+interface Props {
+  eyebrow: string;
+  title: string;
+  intro: string;
+}
+
+const { eyebrow, title, intro } = Astro.props;
+---
+
+<header class="page-header container">
+  <p class="eyebrow">{eyebrow}</p>
+  <h1 class="page-title">{title}</h1>
+  <p class="page-intro">{intro}</p>
+</header>
+
+<style>
+  .page-header { padding-block: 130px 100px; }
+  @media (max-width: 640px) { .page-header { padding-block: 88px 68px; } }
+</style>

@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import { publishedPosts, tagSlug, withBase, type BlogPost } from '../../../utils/content';
+
+export async function getStaticPaths() {
+  const posts = publishedPosts(await getCollection('blog'));
+  const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag: tagSlug(tag) },
+    props: { tag, posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }));
+}
+
+interface Props { tag: string; posts: BlogPost[]; }
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout title={`${tag} articles`} description={`Technical articles tagged ${tag} by Htun Khaing Lynn.`}>
+  <header class="tag-header container">
+    <a class="back" href={withBase('/blog/')}>← All articles</a>
+    <p class="eyebrow">Topic</p>
+    <h1>{tag}</h1>
+    <p>{posts.length} {posts.length === 1 ? 'article' : 'articles'} in this collection.</p>
+  </header>
+  <section class="tag-posts narrow" aria-label={`${tag} articles`}>
+    {posts.map((post) => <BlogCard post={post} />)}
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-header { padding-block: 90px 75px; }
+  .back { display: inline-block; margin-bottom: 60px; color: var(--muted); font-family: var(--font-mono); font-size: 0.72rem; }
+  .back:hover { color: var(--accent); }
+  .tag-header h1 { margin: 0; font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 560; letter-spacing: -0.06em; line-height: 1; }
+  .tag-header > p:last-child { color: var(--muted); }
+  .tag-posts > :last-child { border-bottom: 1px solid var(--border); }
+</style>

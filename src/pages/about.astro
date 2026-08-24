@@ -1,0 +1,101 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { currentlyLearning } from '../data/site';
+import { certifications, education } from '../data/education';
+---
+
+<BaseLayout title="About" description="About Htun Khaing Lynn's engineering interests, approach, and current learning.">
+  <PageHeader
+    eyebrow="About"
+    title="I care about systems that stay understandable as they grow."
+    intro="My work sits at the intersection of backend engineering, data, and infrastructure—the parts of software where clear decisions compound over time."
+  />
+
+  <section class="about-grid container">
+    <div class="about-copy">
+      <p>
+        I’m a software engineer interested in how reliable systems are designed, operated, and improved.
+        Java and Spring Boot are central to my backend work, while Go gives me a useful way to explore
+        concurrency, networking, and small infrastructure tools.
+      </p>
+      <p>
+        I’m drawn to distributed systems and databases because they turn seemingly simple product
+        requirements into honest engineering questions: what is consistent, what can fail, who owns the
+        state, and how will we know the system is healthy?
+      </p>
+      <p>
+        My goal is not complexity for its own sake. I prefer simple boundaries, explicit tradeoffs, useful
+        tests, and operational signals that make software easier to reason about after it ships.
+      </p>
+    </div>
+    <aside>
+      <p class="eyebrow">Areas of interest</p>
+      <ul class="interest-list">
+        <li>Backend architecture</li><li>Java & Spring Boot</li><li>Distributed systems</li>
+        <li>Database internals</li><li>System design</li><li>Infrastructure</li>
+      </ul>
+    </aside>
+  </section>
+
+  <section class="learning container">
+    <div>
+      <p class="eyebrow">Currently learning</p>
+      <h2 class="section-heading">A working syllabus</h2>
+      <p class="learning-note">This list changes as questions from work and reading lead somewhere new.</p>
+    </div>
+    <ol>
+      {currentlyLearning.map((topic, index) => <li><span>0{index + 1}</span><strong>{topic}</strong></li>)}
+    </ol>
+  </section>
+
+  <section class="credentials container" aria-labelledby="education-heading">
+    <div>
+      <p class="eyebrow">Background</p>
+      <h2 id="education-heading" class="section-heading">Education & credentials</h2>
+    </div>
+    <div class="credential-lists">
+      <div>
+        <h3>Education</h3>
+        {education.map((item) => (
+          <article>
+            <p class="credential-title">{item.qualification}</p>
+            <p>{item.institution} · {item.period}</p>
+            <p class="detail">{item.detail}</p>
+          </article>
+        ))}
+      </div>
+      <div>
+        <h3>Certifications</h3>
+        {certifications.map((item) => (
+          <article>
+            <p class="credential-title">{item.name}</p>
+            <p>{item.issuer} · {item.year}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-grid { display: grid; grid-template-columns: 1.45fr 0.7fr; gap: 110px; padding-bottom: 110px; }
+  .about-copy { max-width: 700px; }
+  .about-copy p { margin: 0 0 26px; font-size: 1.08rem; line-height: 1.85; }
+  .interest-list { padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--border); }
+  .interest-list li { padding: 12px 0; border-bottom: 1px solid var(--border); color: var(--muted); font-family: var(--font-mono); font-size: 0.78rem; }
+  .learning { display: grid; grid-template-columns: 0.75fr 1.4fr; gap: 90px; padding-block: 105px; border-top: 1px solid var(--border); }
+  .learning-note { max-width: 360px; color: var(--muted); }
+  .learning ol { padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--border); }
+  .learning li { display: flex; gap: 24px; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .learning li span { color: var(--accent); font-family: var(--font-mono); font-size: 0.72rem; }
+  .learning strong { font-size: 1.05rem; font-weight: 560; }
+  .credentials { display: grid; grid-template-columns: 0.75fr 1.4fr; gap: 90px; padding-block: 105px; border-top: 1px solid var(--border); }
+  .credential-lists { display: grid; grid-template-columns: repeat(2, 1fr); gap: 50px; }
+  .credential-lists h3 { margin: 0; padding-bottom: 12px; border-bottom: 1px solid var(--border); font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; }
+  .credential-lists article { padding: 20px 0; border-bottom: 1px solid var(--border); }
+  .credential-lists p { margin: 3px 0; color: var(--muted); font-size: 0.83rem; }
+  .credential-lists .credential-title { color: var(--text); font-size: 0.95rem; font-weight: 600; }
+  .credential-lists .detail { margin-top: 10px; color: var(--faint); }
+  @media (max-width: 760px) { .about-grid, .learning, .credentials { grid-template-columns: 1fr; gap: 54px; padding-bottom: 75px; } .learning, .credentials { padding-block: 75px; } .credential-lists { grid-template-columns: 1fr; } }
+</style>

@@ -1,0 +1,26 @@
+---
+import { siteData } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-name">{siteData.name}</p>
+      <p>Backend systems, careful engineering, continuous learning.</p>
+    </div>
+    <div class="footer-meta">
+      <a href={`mailto:${siteData.email}`}>{siteData.email}</a>
+      <p>© {new Date().getFullYear()} · Built with Astro</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer { margin-top: 110px; padding: 42px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.82rem; }
+  .footer-inner { display: flex; justify-content: space-between; gap: 32px; }
+  .footer-inner p { margin: 2px 0; }
+  .footer-name { color: var(--text); font-weight: 650; }
+  .footer-meta { text-align: right; }
+  .footer-meta a:hover { color: var(--accent); }
+  @media (max-width: 640px) { .site-footer { margin-top: 72px; } .footer-inner { flex-direction: column; } .footer-meta { text-align: left; } }
+</style>

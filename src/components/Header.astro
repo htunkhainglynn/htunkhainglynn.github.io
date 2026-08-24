@@ -1,0 +1,81 @@
+---
+import { siteData } from '../data/site';
+import { withBase } from '../utils/content';
+
+const pathname = Astro.url.pathname;
+const nav = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Experience', href: '/experience/' },
+  { label: 'Projects', href: '/projects/' },
+  { label: 'Blog', href: '/blog/' },
+];
+
+const isActive = (href: string) => {
+  const target = withBase(href);
+  return href === '/' ? pathname === target || pathname === `${target}/` : pathname.startsWith(target);
+};
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="wordmark" href={withBase('/')} aria-label={`${siteData.name}, home`}>
+      <span>HKL</span><span class="wordmark-dot">.</span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      Menu
+    </button>
+
+    <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+      <div class="nav-pages">
+        {nav.map((item) => (
+          <a href={withBase(item.href)} aria-current={isActive(item.href) ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))}
+      </div>
+      <div class="nav-social">
+        <a href={siteData.github} rel="me noreferrer" target="_blank">GitHub ↗</a>
+        <a href={siteData.linkedin} rel="me noreferrer" target="_blank">LinkedIn ↗</a>
+        <button class="theme-toggle" type="button" aria-label="Switch color theme">Theme</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const menuButton = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = document.querySelector<HTMLElement>('#site-nav');
+  menuButton?.addEventListener('click', () => {
+    const open = menuButton.getAttribute('aria-expanded') === 'true';
+    menuButton.setAttribute('aria-expanded', String(!open));
+    navigation?.classList.toggle('open', !open);
+  });
+
+  document.querySelector<HTMLButtonElement>('.theme-toggle')?.addEventListener('click', () => {
+    const isDark = document.documentElement.classList.toggle('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+  });
+</script>
+
+<style>
+  .site-header { position: sticky; z-index: 30; top: 0; border-bottom: 1px solid var(--border); background: var(--header); backdrop-filter: blur(14px); }
+  .header-inner { display: flex; min-height: 66px; align-items: center; gap: 28px; }
+  .wordmark { flex: 0 0 auto; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; letter-spacing: -0.04em; }
+  .wordmark-dot { color: var(--accent); }
+  .site-nav { display: flex; flex: 1; align-items: center; justify-content: space-between; gap: 32px; }
+  .nav-pages, .nav-social { display: flex; align-items: center; gap: 22px; }
+  .site-nav a, .theme-toggle, .menu-toggle { color: var(--muted); font-family: var(--font-mono); font-size: 0.73rem; font-weight: 520; transition: color 160ms ease; }
+  .site-nav a:hover, .site-nav a[aria-current='page'], .theme-toggle:hover { color: var(--text); }
+  .site-nav a[aria-current='page'] { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 8px; }
+  .theme-toggle, .menu-toggle { padding: 5px 0; border: 0; background: transparent; cursor: pointer; }
+  .menu-toggle { display: none; margin-left: auto; }
+  @media (max-width: 850px) {
+    .menu-toggle { display: block; }
+    .site-nav { display: none; position: absolute; top: 66px; right: 0; left: 0; align-items: stretch; padding: 20px; border-bottom: 1px solid var(--border); background: var(--background); }
+    .site-nav.open { display: grid; }
+    .nav-pages, .nav-social { align-items: flex-start; flex-direction: column; gap: 16px; }
+    .nav-social { padding-top: 20px; border-top: 1px solid var(--border); }
+  }
+</style>

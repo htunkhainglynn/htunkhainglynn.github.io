@@ -1,0 +1,131 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { BlogPost } from '../utils/content';
+import { formatDate, readingTime, tagSlug, withBase } from '../utils/content';
+
+interface Heading { depth: number; slug: string; text: string; }
+interface Props {
+  post: BlogPost;
+  headings: Heading[];
+  previous?: BlogPost;
+  next?: BlogPost;
+}
+
+const { post, headings, previous, next } = Astro.props;
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.description}
+  type="article"
+  publishedDate={post.data.publishedDate}
+  updatedDate={post.data.updatedDate}
+>
+  <article>
+    <header class="article-header narrow">
+      <a class="back" href={withBase('/blog/')}>← All articles</a>
+      <div class="tags">{post.data.tags.map((tag) => <a class="tag" href={withBase(`/blog/tags/${tagSlug(tag)}/`)}>{tag}</a>)}</div>
+      <h1>{post.data.title}</h1>
+      <p class="dek">{post.data.description}</p>
+      <div class="article-meta meta">
+        <span>Published {formatDate(post.data.publishedDate)}</span>
+        {post.data.updatedDate && <span>Updated {formatDate(post.data.updatedDate)}</span>}
+        <span>{readingTime(post.body)}</span>
+      </div>
+    </header>
+
+    <div class="article-rule container"></div>
+    <div class="article-grid container">
+      <aside class="toc" aria-label="Table of contents">
+        <p>On this page</p>
+        <ol>
+          {toc.map((heading) => <li class:list={[`depth-${heading.depth}`]}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}
+        </ol>
+      </aside>
+      <div class="prose"><slot /></div>
+      <aside class="article-aside">
+        <p class="aside-label">Share a thought</p>
+        <p>If something here connects with your work, I’d like to hear how you approached it.</p>
+        <a href="mailto:hello@htunkhainglynn.dev" class="text-link">Send an email →</a>
+      </aside>
+    </div>
+
+    <nav class="post-nav narrow" aria-label="Article navigation">
+      <div>
+        {previous && <><span>Previous article</span><a href={withBase(`/blog/${previous.id}/`)}>{previous.data.title}</a></>}
+      </div>
+      <div class="next">
+        {next && <><span>Next article</span><a href={withBase(`/blog/${next.id}/`)}>{next.data.title}</a></>}
+      </div>
+    </nav>
+  </article>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll<HTMLElement>('.prose pre').forEach((pre) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'copy-code';
+    button.textContent = 'Copy';
+    button.setAttribute('aria-label', 'Copy code to clipboard');
+    button.addEventListener('click', async () => {
+      const code = pre.querySelector('code')?.textContent ?? '';
+      await navigator.clipboard.writeText(code);
+      button.textContent = 'Copied';
+      window.setTimeout(() => { button.textContent = 'Copy'; }, 1600);
+    });
+    pre.append(button);
+  });
+</script>
+
+<style is:global>
+  .article-header { padding-block: 90px 70px; }
+  .article-header .back { display: inline-block; margin-bottom: 64px; color: var(--muted); font-family: var(--font-mono); font-size: 0.72rem; }
+  .article-header .back:hover { color: var(--accent); }
+  .article-header h1 { margin: 24px 0 22px; font-size: clamp(2.65rem, 7vw, 5.7rem); font-weight: 560; letter-spacing: -0.06em; line-height: 0.98; }
+  .article-header .dek { max-width: 700px; margin: 0; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.3rem); }
+  .article-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 30px; }
+  .article-rule { height: 1px; background: var(--border); }
+  .article-grid { display: grid; grid-template-columns: 190px minmax(0, 740px) 170px; gap: 48px; align-items: start; padding-top: 70px; }
+  .toc, .article-aside { position: sticky; top: 98px; }
+  .toc > p, .aside-label { margin: 0 0 14px; color: var(--text); font-family: var(--font-mono); font-size: 0.7rem; font-weight: 650; letter-spacing: 0.08em; text-transform: uppercase; }
+  .toc ol { padding: 0; margin: 0; list-style: none; border-top: 1px solid var(--border); }
+  .toc li { border-bottom: 1px solid var(--border); }
+  .toc li.depth-3 a { padding-left: 12px; }
+  .toc a { display: block; padding: 9px 0; color: var(--muted); font-size: 0.72rem; line-height: 1.45; }
+  .toc a:hover { color: var(--accent); }
+  .article-aside { padding-left: 18px; border-left: 1px solid var(--border); color: var(--muted); font-size: 0.74rem; }
+  .article-aside p { margin: 0 0 16px; }
+  .article-aside .text-link { font-size: 0.72rem; }
+  .prose { min-width: 0; color: var(--text); font-size: 1.03rem; line-height: 1.82; }
+  .prose > :first-child { margin-top: 0; }
+  .prose h2, .prose h3 { scroll-margin-top: 100px; color: var(--text); font-weight: 590; letter-spacing: -0.03em; line-height: 1.25; }
+  .prose h2 { margin: 2.8em 0 0.75em; padding-top: 0.8em; border-top: 1px solid var(--border); font-size: 1.85rem; }
+  .prose h3 { margin: 2.2em 0 0.6em; font-size: 1.28rem; }
+  .prose p { margin: 1.25em 0; }
+  .prose a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+  .prose strong { font-weight: 680; }
+  .prose ul, .prose ol { padding-left: 1.4em; }
+  .prose li { margin: 0.5em 0; padding-left: 0.3em; }
+  .prose blockquote { margin: 1.8em 0; padding: 2px 0 2px 22px; border-left: 3px solid var(--accent); color: var(--muted); font-size: 1.05em; }
+  .prose blockquote p { margin: 0; }
+  .prose :not(pre) > code { padding: 0.15em 0.38em; border: 1px solid var(--border); border-radius: 3px; background: var(--code-bg); font-family: var(--font-mono); font-size: 0.83em; }
+  .prose pre { position: relative; overflow-x: auto; margin: 1.8em 0; padding: 24px; border: 1px solid var(--border); border-radius: 5px; font-size: 0.83rem; line-height: 1.65; }
+  .prose pre code { font-family: var(--font-mono); }
+  .dark .astro-code, .dark .astro-code span { color: var(--shiki-dark) !important; background-color: var(--shiki-dark-bg) !important; }
+  .copy-code { position: absolute; top: 9px; right: 9px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 3px; background: var(--surface); color: var(--muted); font-family: var(--font-mono); font-size: 0.65rem; cursor: pointer; }
+  .copy-code:hover { color: var(--accent); border-color: var(--accent); }
+  .prose table { display: block; overflow-x: auto; width: 100%; margin: 1.8em 0; border-collapse: collapse; font-size: 0.88rem; }
+  .prose th, .prose td { min-width: 120px; padding: 10px 12px; border: 1px solid var(--border); text-align: left; }
+  .prose th { background: var(--surface); font-weight: 650; }
+  .prose hr { height: 1px; margin: 3em 0; border: 0; background: var(--border); }
+  .post-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 90px; padding-block: 34px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .post-nav div { display: grid; gap: 8px; }
+  .post-nav span { color: var(--faint); font-family: var(--font-mono); font-size: 0.68rem; text-transform: uppercase; }
+  .post-nav a { font-weight: 600; line-height: 1.35; }
+  .post-nav a:hover { color: var(--accent); }
+  .post-nav .next { text-align: right; }
+  @media (max-width: 1040px) { .article-grid { grid-template-columns: 170px minmax(0, 1fr); } .article-aside { display: none; } }
+  @media (max-width: 760px) { .article-header { padding-block: 70px 55px; } .article-header .back { margin-bottom: 48px; } .article-grid { grid-template-columns: 1fr; padding-top: 48px; } .toc { position: static; padding: 18px; border: 1px solid var(--border); } .prose { font-size: 1rem; } .post-nav { grid-template-columns: 1fr; } .post-nav .next { text-align: left; } }
+</style>

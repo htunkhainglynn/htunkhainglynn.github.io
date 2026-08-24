@@ -1,0 +1,47 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import BlogCard from '../../components/BlogCard.astro';
+import { publishedPosts, tagSlug, withBase } from '../../utils/content';
+
+const posts = publishedPosts(await getCollection('blog'));
+const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
+---
+
+<BaseLayout title="Blog" description="Notes on backend engineering, distributed systems, databases, Java, Go, and computer science.">
+  <PageHeader
+    eyebrow="Technical blog"
+    title="Notes from learning and building."
+    intro="Long-form explanations, design notes, and small experiments covering backend systems, data, infrastructure, and computer science fundamentals."
+  />
+
+  <div class="blog-layout container">
+    <aside aria-label="Filter articles by topic">
+      <p class="filter-label">Browse by topic</p>
+      <nav class="tag-nav">
+        <a class="active" href={withBase('/blog/')}>All articles <span>{posts.length}</span></a>
+        {tags.map((tag) => (
+          <a href={withBase(`/blog/tags/${tagSlug(tag)}/`)}>{tag} <span>{posts.filter((post) => post.data.tags.includes(tag)).length}</span></a>
+        ))}
+      </nav>
+      <a class="rss-link" href={withBase('/rss.xml')}>RSS feed ↗</a>
+    </aside>
+    <section class="article-list" aria-label="Articles">
+      {posts.map((post) => <BlogCard post={post} />)}
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-layout { display: grid; grid-template-columns: 220px 1fr; gap: 90px; }
+  .blog-layout aside { position: sticky; top: 100px; align-self: start; }
+  .filter-label { margin: 0 0 14px; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+  .tag-nav { display: grid; border-top: 1px solid var(--border); }
+  .tag-nav a { display: flex; justify-content: space-between; padding: 9px 0; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 0.8rem; }
+  .tag-nav a:hover, .tag-nav a.active { color: var(--accent); }
+  .tag-nav span { color: var(--faint); font-family: var(--font-mono); font-size: 0.68rem; }
+  .rss-link { display: inline-block; margin-top: 22px; color: var(--muted); font-family: var(--font-mono); font-size: 0.7rem; }
+  .article-list > :last-child { border-bottom: 1px solid var(--border); }
+  @media (max-width: 760px) { .blog-layout { grid-template-columns: 1fr; gap: 52px; } .blog-layout aside { position: static; } }
+</style>
