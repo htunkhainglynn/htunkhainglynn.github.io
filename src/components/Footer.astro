@@ -9,7 +9,8 @@ import { siteData } from '../data/site';
       <p>Backend systems, careful engineering, continuous learning.</p>
     </div>
     <div class="footer-meta">
-      <a href={`mailto:${siteData.email}`}>{siteData.email}</a>
+      <a href={siteData.linkedin} rel="me noreferrer" target="_blank">LinkedIn ↗</a>
+      <p>{siteData.location}</p>
       <p>© {new Date().getFullYear()} · Built with Astro</p>
     </div>
   </div>

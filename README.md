@@ -33,7 +33,7 @@ The editable content is intentionally separate from the UI:
 - `src/data/projects.ts` — projects, engineering challenges, and links
 - `src/data/education.ts` — education and certifications
 
-The included career, education, project, contact, and repository details are representative placeholders. Replace them before publishing.
+Career, education, certifications, and selected professional initiatives are maintained in these data files. Review them whenever your LinkedIn profile or responsibilities change.
 
 ## Publish a blog article
 
@@ -78,7 +78,7 @@ Add an object to `src/data/projects.ts`. Every project supports:
 
 - name and description
 - technology list
-- GitHub repository and optional live demo
+- optional GitHub repository and public product/service link
 - engineering challenges
 - optional `featured: true` placement on the home page
 

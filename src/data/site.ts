@@ -1,9 +1,9 @@
 export const siteData = {
   name: 'Htun Khaing Lynn',
-  role: 'Software Engineer',
-  email: 'hello@htunkhainglynn.dev',
+  role: 'Platform Developer',
+  location: 'Yangon, Myanmar',
   description:
-    'Software engineer focused on backend systems, distributed architecture, and reliable software.',
+    'Platform developer at Wave Money building secure backend systems and APIs for financial services.',
   github: 'https://github.com/htunkhainglynn',
   linkedin: 'https://www.linkedin.com/in/htunkhainglynn',
 };

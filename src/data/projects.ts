@@ -2,47 +2,49 @@ export interface Project {
   name: string;
   description: string;
   technologies: string[];
-  repository: string;
+  repository?: string;
   demo?: string;
+  demoLabel?: string;
   featured?: boolean;
   challenges: string[];
 }
 
 export const projects: Project[] = [
   {
-    name: 'Event-driven Order Platform',
+    name: '2C2P Wave App',
     description:
-      'A reference backend for exploring reliable event processing, transactional boundaries, and service ownership.',
-    technologies: ['Java', 'Spring Boot', 'Kafka', 'PostgreSQL', 'Docker'],
-    repository: 'https://github.com/htunkhainglynn',
+      'Cross-border remittance infrastructure enabling Myanmar nationals in Thailand to send money instantly to recipients in Myanmar.',
+    technologies: ['Java', 'Spring Boot', 'REST APIs', 'FinTech'],
+    demo: 'https://wavemoney.com.mm/2c2p-wave-app',
+    demoLabel: 'Product page',
     featured: true,
     challenges: [
-      'Kept database writes and event publication consistent with an outbox workflow.',
-      'Designed consumers to be idempotent under retries and duplicate delivery.',
-      'Made failure states observable without coupling services together.',
+      'Designed secure backend systems and APIs for remittances between Thailand and Myanmar.',
+      'Supported instant transfers to WavePay wallets and cash access through more than 60,000 Wave agents.',
+      'Connected cross-border payment flows to multiple recipient channels while preserving reliable transaction behavior.',
     ],
   },
   {
-    name: 'Distributed Job Runner',
+    name: 'Wave–Yoma Bank Linkage',
     description:
-      'A small distributed scheduler built to study leases, retry semantics, backpressure, and worker coordination.',
-    technologies: ['Go', 'PostgreSQL', 'gRPC', 'Docker'],
-    repository: 'https://github.com/htunkhainglynn',
+      'Integration supporting cash-in and cash-out transactions between Wave’s agent network and Yoma Bank.',
+    technologies: ['Java', 'Bank APIs', 'Transaction Systems'],
+    demo: 'https://www.yomabank.com/en/personal/wavepay-linkage/',
+    demoLabel: 'Service details',
     featured: true,
     challenges: [
-      'Prevented duplicate ownership while allowing work to recover after a crashed worker.',
-      'Separated retryable failures from terminal failures with bounded backoff.',
+      'Maintained reliable and secure transaction flows across organizational boundaries.',
+      'Optimized the integration to support scalable cash-in and cash-out operations.',
     ],
   },
   {
-    name: 'Database Notes',
+    name: 'Local Bank Integration Services',
     description:
-      'Executable notes and experiments covering indexes, isolation levels, query plans, and storage behavior.',
-    technologies: ['PostgreSQL', 'SQL', 'Python'],
-    repository: 'https://github.com/htunkhainglynn',
+      'Backend integration services connecting Wave’s financial platform with local banking partners.',
+    technologies: ['Java', 'Spring Boot', 'Bank APIs', 'OTC Workflows'],
     challenges: [
-      'Turned abstract database concepts into reproducible benchmarks and examples.',
-      'Documented the tradeoffs behind each test instead of reporting results in isolation.',
+      'Designed robust over-the-counter cash-in and cash-out workflows.',
+      'Improved accessibility by connecting partner-bank services with Wave transaction channels.',
     ],
   },
 ];

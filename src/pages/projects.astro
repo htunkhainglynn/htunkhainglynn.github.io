@@ -26,8 +26,8 @@ import { projects } from '../data/projects';
         <footer>
           <div class="tags">{project.technologies.map((technology) => <span class="tag">{technology}</span>)}</div>
           <div class="project-links">
-            <a href={project.repository} rel="noreferrer" target="_blank">Repository ↗</a>
-            {project.demo && <a href={project.demo} rel="noreferrer" target="_blank">Live demo ↗</a>}
+            {project.repository && <a href={project.repository} rel="noreferrer" target="_blank">Repository ↗</a>}
+            {project.demo && <a href={project.demo} rel="noreferrer" target="_blank">{project.demoLabel ?? 'Live demo'} ↗</a>}
           </div>
         </footer>
       </article>

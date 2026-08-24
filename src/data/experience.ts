@@ -9,28 +9,27 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
-    company: 'Your Company',
-    position: 'Software Engineer',
-    period: '2024 — Present',
+    company: 'Wave Money',
+    position: 'Platform Developer',
+    period: 'Jun 2025 — Present',
     description:
-      'Building reliable backend services and improving the systems that support product growth.',
-    technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'Kafka', 'Docker'],
+      'Leading backend work for cross-border financial services and banking integrations in Myanmar’s fintech ecosystem.',
+    technologies: ['Java', 'Spring Boot', 'REST APIs', 'Financial Systems'],
     achievements: [
-      'Designed and shipped backend services with clear operational ownership.',
-      'Improved system observability and reduced time spent diagnosing production issues.',
-      'Collaborated across engineering and product to turn ambiguous requirements into maintainable systems.',
+      'Led the backend design and implementation of the 2C2P Wave App, enabling instant remittances from Thailand to WavePay wallets and more than 60,000 Wave agents across Myanmar.',
+      'Designed bank integration services and OTC cash-in/cash-out workflows with local banking partners.',
+      'Maintained and optimized the Wave agent–Yoma Bank cash-in/cash-out integration for reliable, secure, and scalable transaction flows.',
     ],
   },
   {
-    company: 'Previous Company',
-    position: 'Associate Software Engineer',
-    period: '2022 — 2024',
+    company: 'Wave Money',
+    position: 'Java Developer · Contract',
+    period: 'Nov 2023 — Jun 2025',
     description:
-      'Developed APIs and data workflows while strengthening engineering practices across the team.',
-    technologies: ['Java', 'Spring', 'MySQL', 'Redis', 'Linux'],
+      'Contributed to Wave Money’s Java backend systems during a contract engagement before moving into the Platform Developer role.',
+    technologies: ['Java', 'Hibernate', 'SQL', 'Git'],
     achievements: [
-      'Delivered production APIs and integrations used by core product workflows.',
-      'Added automated tests around high-risk business logic and deployment paths.',
+      'Built experience delivering and maintaining backend software in a large-scale financial-services environment.',
     ],
   },
 ];

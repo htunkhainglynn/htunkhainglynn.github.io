@@ -15,14 +15,14 @@ import { certifications, education } from '../data/education';
   <section class="about-grid container">
     <div class="about-copy">
       <p>
-        I’m a software engineer interested in how reliable systems are designed, operated, and improved.
-        Java and Spring Boot are central to my backend work, while Go gives me a useful way to explore
-        concurrency, networking, and small infrastructure tools.
+        I’m a platform developer at Wave Money, working on secure backend systems and APIs for financial
+        services. Java and Spring Boot are central to my work across cross-border payments, local-bank
+        integrations, and cash-in/cash-out transaction flows.
       </p>
       <p>
-        I’m drawn to distributed systems and databases because they turn seemingly simple product
-        requirements into honest engineering questions: what is consistent, what can fail, who owns the
-        state, and how will we know the system is healthy?
+        Building financial infrastructure turns product requirements into concrete engineering questions:
+        what must remain consistent, what can fail, where transaction state belongs, and how a system stays
+        dependable across organizational and service boundaries.
       </p>
       <p>
         My goal is not complexity for its own sake. I prefer simple boundaries, explicit tradeoffs, useful
@@ -32,8 +32,8 @@ import { certifications, education } from '../data/education';
     <aside>
       <p class="eyebrow">Areas of interest</p>
       <ul class="interest-list">
-        <li>Backend architecture</li><li>Java & Spring Boot</li><li>Distributed systems</li>
-        <li>Database internals</li><li>System design</li><li>Infrastructure</li>
+        <li>Financial systems</li><li>Java & Spring Boot</li><li>Bank integrations</li>
+        <li>Backend APIs</li><li>Distributed systems</li><li>Databases</li>
       </ul>
     </aside>
   </section>
@@ -69,8 +69,10 @@ import { certifications, education } from '../data/education';
         <h3>Certifications</h3>
         {certifications.map((item) => (
           <article>
-            <p class="credential-title">{item.name}</p>
-            <p>{item.issuer} · {item.year}</p>
+            <p class="credential-title">
+              <a href={item.credential} rel="noreferrer" target="_blank">{item.name} ↗</a>
+            </p>
+            <p>{item.issuer}{item.year && ` · ${item.year}`}</p>
           </article>
         ))}
       </div>
