@@ -2,6 +2,8 @@
 
 A static developer portfolio and technical blog built with Astro, TypeScript, Tailwind CSS, Markdown/MDX, and Astro Content Collections. Git is the CMS: adding an article and pushing it is the entire publishing workflow.
 
+Live site: <https://htunkhainglynn.github.io/>
+
 ## Requirements
 
 - Node.js 24 or newer
@@ -99,7 +101,7 @@ The production output is fully static and appears in `dist/`.
 
 The workflow at `.github/workflows/deploy.yml` automatically detects whether the repository is a user site or project site, sets the correct Astro base path, builds with `npm ci`, and deploys `dist/`.
 
-1. Create a GitHub repository and push this project to its `main` branch.
+1. Push this project to the `htunkhainglynn.github.io` repository's `main` branch.
 2. Open **Settings → Pages** in GitHub.
 3. Set **Source** to **GitHub Actions**.
 4. Push to `main` or run the workflow manually.
