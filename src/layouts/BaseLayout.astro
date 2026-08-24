@@ -45,7 +45,11 @@ const structuredDataJson = structuredData
     <meta name="description" content={description} />
     <meta name="author" content={siteData.name} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#111513" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/png" sizes="32x32" href={withBase('/favicon-32.png')} />
+    <link rel="icon" type="image/png" sizes="512x512" href={withBase('/icon-512.png')} />
+    <link rel="apple-touch-icon" sizes="180x180" href={withBase('/apple-touch-icon.png')} />
     <link rel="alternate" type="application/rss+xml" title={`${siteData.name}'s writing`} href={withBase('/rss.xml')} />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={pageTitle} />
@@ -67,8 +71,7 @@ const structuredDataJson = structuredData
     {structuredDataJson && <script is:inline type="application/ld+json" set:html={structuredDataJson} />}
     <script is:inline>
       const saved = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      document.documentElement.classList.toggle('dark', saved === 'dark' || (!saved && prefersDark));
+      document.documentElement.classList.toggle('dark', saved !== 'light');
     </script>
   </head>
   <body>

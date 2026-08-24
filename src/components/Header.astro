@@ -58,11 +58,13 @@ const isActive = (href: string) => {
   });
 
   const themeButton = document.querySelector<HTMLButtonElement>('.theme-toggle');
+  const themeColor = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
   const updateThemeLabel = () => {
     const isDark = document.documentElement.classList.contains('dark');
     const label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
     themeButton?.setAttribute('aria-label', label);
     themeButton?.setAttribute('title', label);
+    themeColor?.setAttribute('content', isDark ? '#111513' : '#f6f4ee');
   };
 
   updateThemeLabel();
