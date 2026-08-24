@@ -11,6 +11,19 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: 'Aegis',
+    description:
+      'A centralized API security platform with a FastAPI control plane, Go reverse proxy, and React dashboard that enforces access policies before traffic reaches backend services.',
+    technologies: ['Go', 'FastAPI', 'React', 'PostgreSQL', 'Redis', 'gRPC'],
+    repository: 'https://github.com/htunkhainglynn/ageis',
+    featured: true,
+    challenges: [
+      'Separated policy management in the FastAPI control plane from high-performance request enforcement in the Go reverse proxy.',
+      'Implemented API key and JWT validation, IP blocking, threat detection, credential stripping, and Redis-backed distributed rate limiting.',
+      'Streamed policy changes over gRPC and surfaced sanitized security events through an RBAC-aware React dashboard.',
+    ],
+  },
+  {
     name: '2C2P Wave App',
     description:
       'Cross-border remittance infrastructure enabling Myanmar nationals in Thailand to send money instantly to recipients in Myanmar.',

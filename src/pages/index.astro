@@ -68,8 +68,8 @@ const structuredData = {
       <p class="eyebrow">Platform Developer at Wave Money · Yangon, Myanmar</p>
       <h1>{siteData.name}</h1>
       <p class="hero-intro">
-        Hey, I’m Htun! I build secure Java and Spring Boot systems for financial services—especially
-        cross-border payments, bank integrations, and transaction flows people can count on.
+        I build secure backend systems for financial services and enjoy exploring API security,
+        distributed systems, and the engineering details that make software dependable.
       </p>
       <div class="hero-actions">
         <a class="button" href={withBase('/projects/')}>View projects <span aria-hidden="true">→</span></a>
@@ -130,7 +130,11 @@ const structuredData = {
             <p>{project.description}</p>
           </div>
           <div class="tags">{project.technologies.slice(0, 4).map((technology) => <span class="tag">{technology}</span>)}</div>
-          {project.demo && <a href={project.demo} rel="noreferrer" target="_blank" aria-label={`View ${project.name} details`}>{project.demoLabel ?? 'Details'} ↗</a>}
+          {project.demo ? (
+            <a href={project.demo} rel="noreferrer" target="_blank" aria-label={`View ${project.name} details`}>{project.demoLabel ?? 'Details'} ↗</a>
+          ) : project.repository && (
+            <a href={project.repository} rel="noreferrer" target="_blank" aria-label={`View ${project.name} repository`}>Repository ↗</a>
+          )}
         </article>
       ))}
     </div>
