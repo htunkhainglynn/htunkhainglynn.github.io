@@ -5,28 +5,28 @@ import { currentlyLearning } from '../data/site';
 import { certifications, education } from '../data/education';
 ---
 
-<BaseLayout title="About" description="About Htun Khaing Lynn's engineering interests, approach, and current learning.">
+<BaseLayout title="About Me" description="Meet Htun Khaing Lynn, a platform developer in Yangon working with Java, Spring Boot, financial systems, and backend APIs.">
   <PageHeader
     eyebrow="About"
-    title="I care about systems that stay understandable as they grow."
-    intro="My work sits at the intersection of backend engineering, data, and infrastructure—the parts of software where clear decisions compound over time."
+    title="Hi, I’m Htun. I like untangling tricky backend problems."
+    intro="I’m happiest when a complicated system becomes simpler, safer, and easier for the whole team to understand."
   />
 
   <section class="about-grid container">
     <div class="about-copy">
       <p>
-        I’m a platform developer at Wave Money, working on secure backend systems and APIs for financial
-        services. Java and Spring Boot are central to my work across cross-border payments, local-bank
-        integrations, and cash-in/cash-out transaction flows.
+        I’m a platform developer at Wave Money in Yangon, Myanmar. Most days, you’ll find me working with
+        Java and Spring Boot on secure backend systems for cross-border payments, local-bank integrations,
+        and cash-in/cash-out transaction flows.
       </p>
       <p>
-        Building financial infrastructure turns product requirements into concrete engineering questions:
-        what must remain consistent, what can fail, where transaction state belongs, and how a system stays
-        dependable across organizational and service boundaries.
+        Financial infrastructure comes with wonderfully tricky questions: what must stay consistent, what
+        can fail safely, where transaction state belongs, and how services can cooperate without stepping on
+        each other. I enjoy turning those questions into software people can trust.
       </p>
       <p>
-        My goal is not complexity for its own sake. I prefer simple boundaries, explicit tradeoffs, useful
-        tests, and operational signals that make software easier to reason about after it ships.
+        I’m not interested in complexity for its own sake. Give me clear boundaries, honest tradeoffs,
+        useful tests, and the kind of observability that helps future-us solve problems without drama.
       </p>
     </div>
     <aside>
@@ -41,8 +41,8 @@ import { certifications, education } from '../data/education';
   <section class="learning container">
     <div>
       <p class="eyebrow">Currently learning</p>
-      <h2 class="section-heading">A working syllabus</h2>
-      <p class="learning-note">This list changes as questions from work and reading lead somewhere new.</p>
+      <h2 class="section-heading">What I’m happily nerding out about</h2>
+      <p class="learning-note">This list keeps changing whenever work, a book, or a curious rabbit hole points somewhere new.</p>
     </div>
     <ol>
       {currentlyLearning.map((topic, index) => <li><span>0{index + 1}</span><strong>{topic}</strong></li>)}

@@ -7,16 +7,69 @@ import { formatDate, publishedPosts, readingTime, withBase } from '../utils/cont
 
 const posts = publishedPosts(await getCollection('blog')).slice(0, 2);
 const featuredProjects = projects.filter((project) => project.featured).slice(0, 2);
+const homeURL = new URL(Astro.url.pathname, Astro.site).href;
+const personId = `${homeURL}#person`;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${homeURL}#website`,
+      url: homeURL,
+      name: siteData.name,
+      description: siteData.description,
+      inLanguage: 'en',
+      publisher: { '@id': personId },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': `${homeURL}#profile-page`,
+      url: homeURL,
+      name: `${siteData.name} — Platform Developer`,
+      description: siteData.description,
+      inLanguage: 'en',
+      mainEntity: { '@id': personId },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: siteData.name,
+      description: siteData.description,
+      url: homeURL,
+      email: `mailto:${siteData.email}`,
+      jobTitle: siteData.role,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Yangon',
+        addressCountry: 'MM',
+      },
+      worksFor: {
+        '@type': 'Organization',
+        name: siteData.company,
+        url: siteData.companyUrl,
+      },
+      sameAs: [siteData.linkedin, siteData.github],
+      knowsAbout: [
+        'Java',
+        'Spring Boot',
+        'Backend development',
+        'Financial technology',
+        'Payment systems',
+        'Distributed systems',
+      ],
+    },
+  ],
+};
 ---
 
-<BaseLayout>
+<BaseLayout structuredData={structuredData}>
   <section class="hero container">
     <div class="hero-copy">
-      <p class="eyebrow">Platform Developer · Wave Money</p>
+      <p class="eyebrow">Platform Developer at Wave Money · Yangon, Myanmar</p>
       <h1>{siteData.name}</h1>
       <p class="hero-intro">
-        I build secure backend systems and APIs for financial services, with a focus on cross-border
-        payments, bank integrations, and reliable transaction flows.
+        Hey, I’m Htun! I build secure Java and Spring Boot systems for financial services—especially
+        cross-border payments, bank integrations, and transaction flows people can count on.
       </p>
       <div class="hero-actions">
         <a class="button" href={withBase('/projects/')}>View projects <span aria-hidden="true">→</span></a>
@@ -35,30 +88,30 @@ const featuredProjects = projects.filter((project) => project.featured).slice(0,
         <li><span>03</span> Bank integrations</li>
         <li><span>04</span> Reliable transaction flows</li>
       </ul>
-      <div class="availability"><span></span> Open to thoughtful engineering conversations</div>
+      <div class="availability"><span></span> Always happy to swap ideas about backend engineering</div>
     </aside>
   </section>
 
   <section class="principles container" aria-labelledby="principles-heading">
     <div>
       <p class="eyebrow">How I work</p>
-      <h2 id="principles-heading" class="section-heading">Simple systems.<br />Explicit tradeoffs.</h2>
+      <h2 id="principles-heading" class="section-heading">Serious about systems.<br />Easy to talk to.</h2>
     </div>
     <div class="principle-grid">
       <article>
         <span class="principle-number">01</span>
-        <h3>Understand the failure modes</h3>
-        <p>Good designs explain what happens when dependencies slow down, messages repeat, or partial work succeeds.</p>
+        <h3>Plan for the weird days</h3>
+        <p>I like designs that stay calm when a dependency slows down, a message arrives twice, or only half the work succeeds.</p>
       </article>
       <article>
         <span class="principle-number">02</span>
-        <h3>Prefer legibility</h3>
-        <p>Code and architecture should make their important constraints visible to the next person who works on them.</p>
+        <h3>Keep it easy to follow</h3>
+        <p>Good code should help the next person understand the important rules without needing a treasure map.</p>
       </article>
       <article>
         <span class="principle-number">03</span>
-        <h3>Measure real behavior</h3>
-        <p>Observability is part of the design—not something added after software reaches production.</p>
+        <h3>Watch what actually happens</h3>
+        <p>Logs, metrics, and traces belong in the plan from day one. Production always has something useful to teach us.</p>
       </article>
     </div>
   </section>
@@ -102,8 +155,8 @@ const featuredProjects = projects.filter((project) => project.featured).slice(0,
 
   <section class="contact container">
     <p class="eyebrow">Get in touch</p>
-    <h2>Interested in financial platforms,<br />backend systems, or engineering craft?</h2>
-    <a class="text-link" href={withBase('/contact/')}>Send me a message →</a>
+    <h2>Got a backend puzzle,<br />a project idea, or a good tech story?</h2>
+    <a class="text-link" href={withBase('/contact/')}>Come say hello →</a>
   </section>
 </BaseLayout>
 

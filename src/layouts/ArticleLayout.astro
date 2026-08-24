@@ -14,6 +14,25 @@ interface Props {
 
 const { post, headings, previous, next } = Astro.props;
 const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+const articleURL = new URL(`${import.meta.env.BASE_URL}blog/${post.id}/`, Astro.site).href;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  url: articleURL,
+  mainEntityOfPage: articleURL,
+  datePublished: post.data.publishedDate.toISOString(),
+  dateModified: (post.data.updatedDate ?? post.data.publishedDate).toISOString(),
+  inLanguage: 'en',
+  keywords: post.data.tags.join(', '),
+  author: {
+    '@type': 'Person',
+    name: siteData.name,
+    url: new URL(import.meta.env.BASE_URL, Astro.site).href,
+    sameAs: [siteData.linkedin, siteData.github],
+  },
+};
 ---
 
 <BaseLayout
@@ -22,6 +41,7 @@ const toc = headings.filter((heading) => heading.depth === 2 || heading.depth ==
   type="article"
   publishedDate={post.data.publishedDate}
   updatedDate={post.data.updatedDate}
+  structuredData={structuredData}
 >
   <article>
     <header class="article-header narrow">
@@ -46,9 +66,9 @@ const toc = headings.filter((heading) => heading.depth === 2 || heading.depth ==
       </aside>
       <div class="prose"><slot /></div>
       <aside class="article-aside">
-        <p class="aside-label">Share a thought</p>
-        <p>If something here connects with your work, I’d like to hear how you approached it.</p>
-        <a href={`mailto:${siteData.email}`} class="text-link">Send an email →</a>
+        <p class="aside-label">Spotted a better way?</p>
+        <p>I’m all ears. Tell me what worked for you, what didn’t, or what I should explore next.</p>
+        <a href={`mailto:${siteData.email}`} class="text-link">Send me a note →</a>
       </aside>
     </div>
 

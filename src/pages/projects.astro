@@ -4,11 +4,11 @@ import PageHeader from '../components/PageHeader.astro';
 import { projects } from '../data/projects';
 ---
 
-<BaseLayout title="Projects" description="Software engineering projects with technical decisions, constraints, and lessons learned.">
+<BaseLayout title="Backend Engineering Projects" description="Backend and fintech projects by Htun Khaing Lynn using Java, Spring Boot, payment APIs, and banking integrations.">
   <PageHeader
     eyebrow="Projects"
-    title="Problems explored through working software."
-    intro="These projects focus on the decisions behind a system: its failure modes, data boundaries, operational behavior, and the tradeoffs made along the way."
+    title="A few things I’m proud to have helped build."
+    intro="Here’s the interesting part behind each project: the problem, the tricky bits, and how the system was designed to behave when real life got involved."
   />
 
   <section class="project-grid container" aria-label="Engineering projects">
@@ -20,7 +20,7 @@ import { projects } from '../data/projects';
           <p>{project.description}</p>
         </header>
         <div class="project-body">
-          <h3>Engineering challenges</h3>
+          <h3>The interesting challenges</h3>
           <ul>{project.challenges.map((challenge) => <li>{challenge}</li>)}</ul>
         </div>
         <footer>

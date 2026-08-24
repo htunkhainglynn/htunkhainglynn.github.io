@@ -9,11 +9,11 @@ const posts = publishedPosts(await getCollection('blog'));
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 
-<BaseLayout title="Blog" description="Notes on backend engineering, distributed systems, databases, Java, Go, and computer science.">
+<BaseLayout title="Backend Engineering Blog" description="Friendly, practical articles by Htun Khaing Lynn about Java, backend engineering, distributed systems, databases, and fintech software.">
   <PageHeader
     eyebrow="Technical blog"
-    title="Notes from learning and building."
-    intro="Long-form explanations, design notes, and small experiments covering backend systems, data, infrastructure, and computer science fundamentals."
+    title="Things I learned, explained without the fog."
+    intro="Friendly, practical notes about backend systems, data, infrastructure, and computer science—written to help both of us understand the tricky bits a little better."
   />
 
   <div class="blog-layout container">

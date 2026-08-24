@@ -4,11 +4,11 @@ import PageHeader from '../components/PageHeader.astro';
 import { experiences } from '../data/experience';
 ---
 
-<BaseLayout title="Experience" description="Professional software engineering experience, responsibilities, and technical impact.">
+<BaseLayout title="Software Engineering Experience" description="Htun Khaing Lynn's software engineering experience building Java, Spring Boot, banking, and payment systems at Wave Money.">
   <PageHeader
     eyebrow="Experience"
-    title="Building dependable software, one constraint at a time."
-    intro="A record of the systems I have contributed to, the responsibilities I have taken on, and the engineering practices I value."
+    title="The work so far—and what I’ve learned along the way."
+    intro="I’ve been lucky to work on financial systems that matter to real people. Here are the roles, projects, and lessons that shaped how I build software."
   />
 
   <section class="timeline container" aria-label="Professional experience">
@@ -23,7 +23,7 @@ import { experiences } from '../data/experience';
           <p class="role-number">0{index + 1}</p>
           <h2>{experience.position}</h2>
           <p class="description">{experience.description}</p>
-          <h3>Selected impact</h3>
+          <h3>A few things I’m proud of</h3>
           <ul>{experience.achievements.map((achievement) => <li>{achievement}</li>)}</ul>
           <div class="tags">{experience.technologies.map((technology) => <span class="tag">{technology}</span>)}</div>
         </div>
