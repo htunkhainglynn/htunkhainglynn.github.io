@@ -68,8 +68,8 @@ const structuredData = {
       <p class="eyebrow">Platform Developer at Wave Money · Yangon, Myanmar</p>
       <h1>{siteData.name}</h1>
       <p class="hero-intro">
-        I build secure backend systems for financial services and enjoy exploring API security,
-        distributed systems, and the engineering details that make software dependable.
+        I turn complicated backend flows into calm, dependable software—and genuinely enjoy the
+        API security, distributed-systems, and fintech puzzles along the way.
       </p>
       <div class="hero-actions">
         <a class="button" href={withBase('/projects/')}>View projects <span aria-hidden="true">→</span></a>
@@ -81,45 +81,45 @@ const structuredData = {
       </div>
     </div>
     <aside class="hero-note" aria-label="Engineering focus">
-      <p class="note-label">Current focus</p>
+      <p class="note-label">What keeps me curious</p>
       <ul>
-        <li><span>01</span> Financial platforms</li>
-        <li><span>02</span> Cross-border payments</li>
-        <li><span>03</span> Bank integrations</li>
-        <li><span>04</span> Reliable transaction flows</li>
+        <li><span>01</span> Financial platforms that just work</li>
+        <li><span>02</span> Cross-border payment puzzles</li>
+        <li><span>03</span> Bank integrations with fewer surprises</li>
+        <li><span>04</span> Transaction flows that stay calm</li>
       </ul>
-      <div class="availability"><span></span> Always happy to swap ideas about backend engineering</div>
+      <div class="availability"><span></span> Always up for a good backend chat</div>
     </aside>
   </section>
 
   <section class="principles container" aria-labelledby="principles-heading">
     <div>
       <p class="eyebrow">How I work</p>
-      <h2 id="principles-heading" class="section-heading">Serious about systems.<br />Easy to talk to.</h2>
+      <h2 id="principles-heading" class="section-heading">Build carefully.<br />Stay curious. Keep it fun.</h2>
     </div>
     <div class="principle-grid">
       <article>
         <span class="principle-number">01</span>
-        <h3>Plan for the weird days</h3>
-        <p>I like designs that stay calm when a dependency slows down, a message arrives twice, or only half the work succeeds.</p>
+        <h3>Expect the plot twists</h3>
+        <p>Slow dependency? Duplicate message? Half-finished work? Good designs have a friendly plan for all three.</p>
       </article>
       <article>
         <span class="principle-number">02</span>
-        <h3>Keep it easy to follow</h3>
-        <p>Good code should help the next person understand the important rules without needing a treasure map.</p>
+        <h3>Leave a friendly trail</h3>
+        <p>Good code should welcome the next person in, with clear rules and no treasure map required.</p>
       </article>
       <article>
         <span class="principle-number">03</span>
-        <h3>Watch what actually happens</h3>
-        <p>Logs, metrics, and traces belong in the plan from day one. Production always has something useful to teach us.</p>
+        <h3>Listen to production</h3>
+        <p>Logs, metrics, and traces tell great stories. I like giving them a voice from day one.</p>
       </article>
     </div>
   </section>
 
   <section class="work container" aria-labelledby="work-heading">
     <div class="section-topline">
-      <div><p class="eyebrow">Selected work</p><h2 id="work-heading" class="section-heading">Engineering projects</h2></div>
-      <a class="text-link" href={withBase('/projects/')}>All projects →</a>
+      <div><p class="eyebrow">Fun problems, real systems</p><h2 id="work-heading" class="section-heading">Projects I loved working on</h2></div>
+      <a class="text-link" href={withBase('/projects/')}>See the whole playground →</a>
     </div>
     <div class="project-list">
       {featuredProjects.map((project, index) => (
@@ -142,8 +142,8 @@ const structuredData = {
 
   <section class="writing container" aria-labelledby="writing-heading">
     <div class="section-topline">
-      <div><p class="eyebrow">From the notebook</p><h2 id="writing-heading" class="section-heading">Recent writing</h2></div>
-      <a class="text-link" href={withBase('/blog/')}>Browse the blog →</a>
+      <div><p class="eyebrow">Notes from the rabbit holes</p><h2 id="writing-heading" class="section-heading">Recent discoveries</h2></div>
+      <a class="text-link" href={withBase('/blog/')}>Open the notebook →</a>
     </div>
     <div class="post-list">
       {posts.map((post) => (
@@ -158,15 +158,15 @@ const structuredData = {
   </section>
 
   <section class="contact container">
-    <p class="eyebrow">Get in touch</p>
-    <h2>Got a backend puzzle,<br />a project idea, or a good tech story?</h2>
-    <a class="text-link" href={withBase('/contact/')}>Come say hello →</a>
+    <p class="eyebrow">Let’s swap notes</p>
+    <h2>Have a curious idea,<br />a tricky bug, or a favorite tech rabbit hole?</h2>
+    <a class="text-link" href={withBase('/contact/')}>Bring it to my inbox →</a>
   </section>
 </BaseLayout>
 
 <style>
   .hero { display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 90px; align-items: end; min-height: 690px; padding-block: 120px 90px; }
-  .hero h1 { max-width: 700px; margin: 0; font-size: clamp(3.7rem, 9vw, 8rem); font-weight: 560; letter-spacing: -0.07em; line-height: 0.86; }
+  .hero h1 { max-width: 700px; margin: 0; font-size: clamp(3.7rem, 9vw, 8rem); font-weight: 560; letter-spacing: -0.055em; line-height: 0.9; }
   .hero-intro { max-width: 650px; margin: 36px 0 0; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.35rem); line-height: 1.65; }
   .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 38px; }
   .hero-links { display: flex; gap: 20px; margin-top: 24px; }

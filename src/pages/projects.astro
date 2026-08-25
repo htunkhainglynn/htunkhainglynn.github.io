@@ -6,9 +6,9 @@ import { projects } from '../data/projects';
 
 <BaseLayout title="Backend Engineering Projects" description="Backend, API security, and fintech projects by Htun Khaing Lynn using Go, FastAPI, Java, Spring Boot, React, and distributed systems.">
   <PageHeader
-    eyebrow="Projects"
-    title="A few things I’m proud to have helped build."
-    intro="Here’s the interesting part behind each project: the problem, the tricky bits, and how the system was designed to behave when real life got involved."
+    eyebrow="Build log"
+    title="Real puzzles, useful systems, satisfying payoffs."
+    intro="Each project started with a stubborn problem and a lot of curious questions. Here are the tricky bits, useful decisions, and lessons that made the build worthwhile."
   />
 
   <section class="project-grid container" aria-label="Engineering projects">
@@ -20,7 +20,7 @@ import { projects } from '../data/projects';
           <p>{project.description}</p>
         </header>
         <div class="project-body">
-          <h3>The interesting challenges</h3>
+          <h3>The fun, tricky parts</h3>
           <ul>{project.challenges.map((challenge) => <li>{challenge}</li>)}</ul>
         </div>
         <footer>

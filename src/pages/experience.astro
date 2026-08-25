@@ -6,9 +6,9 @@ import { experiences } from '../data/experience';
 
 <BaseLayout title="Software Engineering Experience" description="Htun Khaing Lynn's software engineering experience building Java, Spring Boot, banking, and payment systems at Wave Money.">
   <PageHeader
-    eyebrow="Experience"
-    title="The work so far—and what I’ve learned along the way."
-    intro="I’ve been lucky to work on financial systems that matter to real people. Here are the roles, projects, and lessons that shaped how I build software."
+    eyebrow="The journey so far"
+    title="Good systems, great teammates, plenty of lessons."
+    intro="Working on financial systems that matter to real people has brought challenging puzzles, meaningful wins, and a lot of learning worth carrying forward."
   />
 
   <section class="timeline container" aria-label="Professional experience">
@@ -23,7 +23,7 @@ import { experiences } from '../data/experience';
           <p class="role-number">0{index + 1}</p>
           <h2>{experience.position}</h2>
           <p class="description">{experience.description}</p>
-          <h3>A few things I’m proud of</h3>
+          <h3>Wins worth celebrating</h3>
           <ul>{experience.achievements.map((achievement) => <li>{achievement}</li>)}</ul>
           <div class="tags">{experience.technologies.map((technology) => <span class="tag">{technology}</span>)}</div>
         </div>
