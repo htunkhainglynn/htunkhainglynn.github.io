@@ -25,7 +25,7 @@ const {
   structuredData,
 } = Astro.props;
 const pageTitle = title === siteData.name
-  ? `${siteData.name} | Platform Developer in Myanmar`
+  ? `${siteData.name} | Software Engineer in Myanmar`
   : `${title} | ${siteData.name}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const image = suppliedImage ?? (type === 'website' ? withBase('/og.jpg') : undefined);
