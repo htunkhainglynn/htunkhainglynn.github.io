@@ -1,6 +1,6 @@
 ---
-title: "C.O.D.E အခန်း ၆ — Switch တွေနဲ့ Logic"
-description: "Aristotle ကနေ Boolean algebra အထိ logic ကို switch circuit တွေနဲ့ ချိတ်ပြီး AND, OR, NOT gate တွေရဲ့ အခြေခံကို လေ့လာမယ်။"
+title: "C.O.D.E အခန်း ၆ — အဖွင့်နှင့်အပိတ်ကြားမှာ အတွေးကို ပုံဖော်သော ခလုတ်ကလေးများ"
+description: "Boolean logic ကို switch တွေနဲ့ တည်ဆောက်ကြည့်ရင်း AND နဲ့ OR ဟာ စာရွက်ပေါ်က အယူအဆတွေကနေ တကယ့် circuit တွေအဖြစ် ပြောင်းလဲလာမယ်။"
 publishedDate: 2026-10-05T01:00:00Z
 language: my
 tags:
