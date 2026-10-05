@@ -9,12 +9,16 @@ const posts = publishedPosts(await getCollection('blog'));
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))].sort();
 ---
 
-<BaseLayout title="C.O.D.E in Burmese" description="C.O.D.E ကို မြန်မာဘာသာနဲ့ နားလည်လွယ်အောင် ဖတ်ရှုနိုင်တဲ့ Htun Khaing Lynn ရဲ့ learning blog.">
-  <PageHeader
-    eyebrow="The learning log"
-    title="C.O.D.E ကို အခန်းလိုက် ပျော်ပျော်ဖတ်မယ်။"
-    intro="Computer တွေရဲ့ အတွင်းက အကြောင်းတွေကို မြန်မာဘာသာနဲ့ ရှင်းရှင်းလင်းလင်း၊ မပျင်းရအောင် အခန်းလိုက် ဖတ်ရှုနိုင်ပါတယ်။"
-  />
+<BaseLayout
+title="C.O.D.E in Burmese"
+description="From bits and switches to a working computer"
+
+
+<PageHeader
+eyebrow="Bits → Logic → Computer"
+title="0 နဲ့ 1 ကနေ Computer တစ်လုံးအထိ။"
+intro="ဘာကြောင့် switch တွေက logic ဖြစ်လာပြီး၊ logic တွေက နောက်ဆုံး computer တစ်လုံးဖြစ်လာနိုင်တာလဲ။ C.O.D.E ကို အခန်းလိုက် ဖြုတ်ကြည့်မယ်။"
+/>
 
   <div class="blog-layout container">
     <aside aria-label="Filter articles by topic">
