@@ -99,6 +99,13 @@ button, a { -webkit-tap-highlight-color: transparent; }
   font-weight: 560;
   letter-spacing: -0.055em;
   line-height: 0.98;
+  overflow-wrap: anywhere;
+}
+
+.page-title:lang(my) {
+  font-family: "Noto Sans Myanmar", "Myanmar Sangam MN", "Myanmar Text", sans-serif;
+  letter-spacing: 0;
+  line-height: 1.24;
 }
 
 .page-intro {
@@ -107,6 +114,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
   color: var(--muted);
   font-size: clamp(1.05rem, 2vw, 1.25rem);
   line-height: 1.65;
+  overflow-wrap: anywhere;
 }
 
 .section-heading {
