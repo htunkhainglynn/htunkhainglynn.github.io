@@ -24,7 +24,7 @@ const structuredData = {
   mainEntityOfPage: articleURL,
   datePublished: post.data.publishedDate.toISOString(),
   dateModified: (post.data.updatedDate ?? post.data.publishedDate).toISOString(),
-  inLanguage: 'en',
+  inLanguage: post.data.language,
   keywords: post.data.tags.join(', '),
   author: {
     '@type': 'Person',
@@ -41,6 +41,7 @@ const structuredData = {
   type="article"
   publishedDate={post.data.publishedDate}
   updatedDate={post.data.updatedDate}
+  language={post.data.language}
   structuredData={structuredData}
 >
   <article>
@@ -105,6 +106,7 @@ const structuredData = {
   .article-header .back { display: inline-block; margin-bottom: 64px; color: var(--muted); font-family: var(--font-mono); font-size: 0.72rem; }
   .article-header .back:hover { color: var(--accent); }
   .article-header h1 { margin: 24px 0 22px; font-size: clamp(2.65rem, 7vw, 5.7rem); font-weight: 560; letter-spacing: -0.06em; line-height: 0.98; }
+  .article-header h1:lang(my) { font-family: "Noto Sans Myanmar", "Myanmar Sangam MN", "Myanmar Text", sans-serif; font-size: clamp(2.35rem, 6vw, 4.65rem); letter-spacing: 0; line-height: 1.24; }
   .article-header .dek { max-width: 700px; margin: 0; color: var(--muted); font-size: clamp(1.08rem, 2vw, 1.3rem); }
   .article-meta { display: flex; flex-wrap: wrap; gap: 22px; margin-top: 30px; }
   .article-rule { height: 1px; background: var(--border); }
@@ -120,6 +122,7 @@ const structuredData = {
   .article-aside p { margin: 0 0 16px; }
   .article-aside .text-link { font-size: 0.72rem; }
   .prose { min-width: 0; color: var(--text); font-size: 1.03rem; line-height: 1.82; }
+  .prose:lang(my) { font-family: "Noto Sans Myanmar", "Myanmar Sangam MN", "Myanmar Text", sans-serif; line-height: 2; }
   .prose > :first-child { margin-top: 0; }
   .prose h2, .prose h3 { scroll-margin-top: 100px; color: var(--text); font-weight: 590; letter-spacing: -0.03em; line-height: 1.25; }
   .prose h2 { margin: 2.8em 0 0.75em; padding-top: 0.8em; border-top: 1px solid var(--border); font-size: 1.85rem; }
@@ -140,6 +143,7 @@ const structuredData = {
   .prose table { display: block; overflow-x: auto; width: 100%; margin: 1.8em 0; border-collapse: collapse; font-size: 0.88rem; }
   .prose th, .prose td { min-width: 120px; padding: 10px 12px; border: 1px solid var(--border); text-align: left; }
   .prose th { background: var(--surface); font-weight: 650; }
+  .prose img { display: block; width: 100%; height: auto; margin: 2em auto; border: 1px solid var(--border); border-radius: 8px; background: #fff; }
   .prose hr { height: 1px; margin: 3em 0; border: 0; background: var(--border); }
   .post-nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-top: 90px; padding-block: 34px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
   .post-nav div { display: grid; gap: 8px; }
